@@ -12,8 +12,8 @@ if( !exists("envg") ) envg <- env()  # global environment
 
 envg$EXPENV <- list()
 envg$EXPENV$bucket_dir <- "~/buckets/b1"
-envg$EXPENV$exp_dir <- "~/buckets/b1/expwEXP7/"
-envg$EXPENV$wf_dir <- "~/buckets/b1/flowEXP7/"
+envg$EXPENV$exp_dir <- "~/buckets/b1/expwEXP6/"
+envg$EXPENV$wf_dir <- "~/buckets/b1/flowEXP6/"
 envg$EXPENV$repo_dir <- "~/dmeyf2024/"
 envg$EXPENV$datasets_dir <- "~/buckets/b1/datasets/"
 envg$EXPENV$messenger <- "~/install/zulip_enviar.sh"
@@ -426,7 +426,7 @@ EV_evaluate_conclase_gan <- function( pinputexps )
 # Este es el  Workflow Baseline
 # Que predice 202106 donde SI hay clase completa
 
-wf_junio_exp7lp <- function( pnombrewf )
+wf_junio_exp6 <- function( pnombrewf )
 {
   param_local <- exp_wf_init( pnombrewf ) # linea workflow inicial fija
 
@@ -463,5 +463,5 @@ wf_junio_exp7lp <- function( pnombrewf )
 # Aqui comienza el programa
 
 # llamo al workflow con future = 202106
-wf_junio_exp7lp()
+wf_junio_exp6()
 
