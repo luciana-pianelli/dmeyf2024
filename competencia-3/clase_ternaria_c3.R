@@ -1,10 +1,7 @@
 require( "data.table" )
 
-# Establezco el Working Directory
-setwd("~/buckets/b1/datasets/")
-
 # leo el dataset
-dataset <- read.csv(gzfile("competencia_03_crudo.csv.gz"))
+dataset <- fread("~/buckets/b1/datasets/competencia_03_crudo.csv.gz" )
 
 setDT(dataset)
 
@@ -49,3 +46,6 @@ fwrite( dataset,
         file =  "competencia_03.csv.gz",
         sep = ","
 )
+
+# Guardo el dataset procesado en el mismo directorio
+fwrite(dataset, file = "~/buckets/b1/datasets/competencia_03.csv.gz", sep = ",")
