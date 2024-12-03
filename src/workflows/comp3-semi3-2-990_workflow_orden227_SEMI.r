@@ -13,8 +13,8 @@ if( !exists("envg") ) envg <- env()  # global environment
 
 envg$EXPENV <- list()
 envg$EXPENV$bucket_dir <- "~/buckets/b1"
-envg$EXPENV$exp_dir <- "~/buckets/b1/expwC3S2bis/"
-envg$EXPENV$wf_dir <- "~/buckets/b1/flowC3S2bis/"
+envg$EXPENV$exp_dir <- "~/buckets/b1/expwC3S3.2/"
+envg$EXPENV$wf_dir <- "~/buckets/b1/flowC3S3.2/"
 envg$EXPENV$repo_dir <- "~/dmeyf2024/"
 envg$EXPENV$datasets_dir <- "~/buckets/b1/datasets/"
 envg$EXPENV$messenger <- "~/install/zulip_enviar.sh"
@@ -178,7 +178,7 @@ FErf_attributes_base <- function( pinputexps, ratio, desvio)
 
   # Parametros de un LightGBM que se genera para estimar la column importance
   param_local$train$clase01_valor1 <- c( "BAJA+2", "BAJA+1")
-  param_local$train$training <- c( 202103, 202105, 202106)
+  param_local$train$training <- c( 202105, 202106, 202107)
 
   # parametros para que LightGBM se comporte como Random Forest
   param_local$lgb_param <- list(
@@ -263,7 +263,7 @@ TS_strategy_base8 <- function( pinputexps )
 
   param_local$meta$script <- "/src/wf-etapas/z2101_TS_training_strategy.r"
 
-  param_local$future <- c(202108)
+  param_local$future <- c(202109)
 
   param_local$final_train$undersampling <- 1.0
   param_local$final_train$clase_minoritaria <- c( "BAJA+1", "BAJA+2")
@@ -296,7 +296,7 @@ TS_strategy_base8 <- function( pinputexps )
 
   param_local$future <- c(202109)
 
-  param_local$final_train$undersampling <- 0.02
+  param_local$final_train$undersampling <- 0.1
   param_local$final_train$clase_minoritaria <- c( "BAJA+1", "BAJA+2")
   param_local$final_train$training <- c(
     202107, 202106, 202105,
@@ -304,7 +304,9 @@ TS_strategy_base8 <- function( pinputexps )
     202102, 202101, 
     202012, 202011, 202010, 202009, 202008, 202007, 
     # 202006  Excluyo por variables rotas
-    202005, 202004, 202003, 202002, 202001,
+    202005,
+    #202004, 202003,
+    202002, 202001,
     201912, 201911,
     # 201910 Excluyo por variables rotas
     201909, 201908, 201907, 201906,
@@ -321,7 +323,9 @@ TS_strategy_base8 <- function( pinputexps )
     202102, 202101, 
     202012, 202011, 202010, 202009, 202008, 202007, 
     # 202006  Excluyo por variables rotas
-    202005, 202004, 202003, 202002, 202001,
+    202005,
+     #202004, 202003,
+    202002, 202001,
     201912, 201911,
     # 201910 Excluyo por variables rotas
     201909, 201908, 201907, 201906,
@@ -332,7 +336,7 @@ TS_strategy_base8 <- function( pinputexps )
 
   # Atencion  0.2  de  undersampling de la clase mayoritaria,  los CONTINUA
   # 1.0 significa NO undersampling
-  param_local$train$undersampling <- 0.02
+  param_local$train$undersampling <- 0.1
   param_local$train$clase_minoritaria <- c( "BAJA+1", "BAJA+2")
 
   return( exp_correr_script( param_local ) ) # linea fija
@@ -353,7 +357,7 @@ HT_tuning_semillerio <- function( pinputexps, semillerio, bo_iteraciones, bypass
   # En caso que se haga cross validation, se usa esta cantidad de folds
   param_local$lgb_crossvalidation_folds <- 5
 
-  param_local$train$clase01_valor1 <- c( "BAJA+2", "BAJA+1")
+  param_local$train$clase01_valor1 <- c( "BAJA+2")
   param_local$train$positivos <- c( "BAJA+2")
   param_local$train$gan1 <- 273000
   param_local$train$gan0 <-  -7000
@@ -427,7 +431,7 @@ FM_final_models_lightgbm_semillerio <- function( pinputexps, ranks, semillerio, 
   # Que modelos quiero, segun su iteracion_bayesiana de la Bayesian Optimizacion, SIN ordenar
   param_local$modelos_iteracion <- c()
 
-  param_local$train$clase01_valor1 <- c( "BAJA+2", "BAJA+1")
+  param_local$train$clase01_valor1 <- c( "BAJA+2")
   param_local$train$positivos <- c( "BAJA+2")
 
   # default 20 semillas
@@ -479,7 +483,7 @@ KA_evaluate_kaggle_semillerio <- function( pinputexps )
 # Que predice 202107 donde conozco la clase
 # y ya genera graficos
 
-wf_c3SEMI2bis_sep_orden227 <- function( pnombrewf )
+wf_c3SEMI3.2_sep_orden227 <- function( pnombrewf )
 {
   param_local <- exp_wf_init( pnombrewf ) # linea fija
 
@@ -520,6 +524,6 @@ wf_c3SEMI2bis_sep_orden227 <- function( pnombrewf )
 # Aqui comienza el programa
 
 # llamo al workflow con future = 202108
-wf_c3SEMI2bis_sep_orden227()
+wf_c3SEMI3.2_sep_orden227()
 
 
